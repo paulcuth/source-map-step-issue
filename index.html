@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <ol>
+      <li>Open the browser console and go to the Debugger/Sources tab.</li>
+      <li>Select the <code>./src/app.lua</code> file.</li>
+      <li>Place a breakpoint on line 2.</li>
+      <li>Refresh.</li>
+      <li>Use step over to step through the code.</li>
+    </ol>
+
+    <p>
+      Observe that in Firefox each step progresses to the next observable statement, as you might expect.
+      However, in Chrome, when you step through the code, the highlight stays on line 4 for five clicks of the step over button each time.
+    </p>
+    <p>
+      I believe this may be due to the fact that that single line of Lua code is translated to <a href="https://github.com/paulcuth/source-map-step-issue/blob/master/app.lua.js#L35-L38">a number of lines</a> in JavaScript. 
+      The Chrome debugger appears to be stepping through the generated code statement by statement, rather than the code that is visible in the debugger.
+      As a developer, the Firefox method is preferable/more appropriate. 
+    </p>
+    <p>
+      <a href="https://github.com/paulcuth/source-map-step-issue">Source</a>
+    </p>
+    <script src="./starlight.js"></script>
+    <script src="./app.lua.js"></script>
+  </body>
+</html>
